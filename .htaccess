@@ -1,0 +1,102 @@
+#SSL SETUP
+#SSLOptions +StrictRequire
+#SSLRequireSSL
+#SSLRequire %{HTTP_HOST} eq "eardish.com"
+#RewriteCond %{HTTPS} =on
+#RewriteRule .* http://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+#ErrorDocument 403 https://eardish.com
+#SSL END
+
+#AUTH START
+#AuthName "Restricted Area" 
+#AuthType Basic 
+#AuthUserFile /var/www/.htpasswd 
+#AuthGroupFile /dev/null 
+#require valid-user
+#AUTH END
+
+# BEGIN TOR exit node filter
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  #RewriteCond %{REMOTE_HOST} (rr) [NC,OR]
+  RewriteCond %{REMOTE_HOST} (tor) [NC,OR]
+  RewriteCond %{REMOTE_HOST} (exit) [NC,OR]
+  RewriteCond %{REMOTE_HOST} (node) [NC,OR]
+  RewriteCond %{REMOTE_HOST} (proxy) [NC,OR]
+  RewriteCond %{REMOTE_HOST} (bot) [NC]
+  #RewriteRule ^(.*)$ brb.php [L]
+  RewriteRule ^(.*)$ - [F]
+</IfModule>
+# END TOR exit node filter
+
+# PERMALINK OVERRIDES FOR SPECIAL POST TYPES
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^songs.* /music/ [L,R=301]
+  RewriteRule ^posts.* /news/ [L,R=301]
+  RewriteRule ^articles.* /news/ [L,R=301]
+  RewriteRule ^users.* /members/ [L,R=301]
+  RewriteRule ^profiles.* /members/ [L,R=301]
+  RewriteRule ^post/(.*)$ /article/$1 [L,R=301]
+  RewriteRule ^member/(.*)$ /profile/$1 [L,R=301]
+  RewriteRule ^user/(.*)$ /profile/$1 [L,R=301]
+  RewriteRule ^(music|news|members)$ $1/ [L,R=301]
+</IfModule>
+# END PERMALINK OVERRIDES FOR SPECIAL POST TYPES
+
+# BEGIN BALLS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_URI} !(wp-content/themes/score/tpl/notification/emails)
+  RewriteCond %{REQUEST_URI} !(sigs)
+  RewriteCond %{REQUEST_URI} !(wp-*)
+  RewriteCond %{REQUEST_URI} !(wp-admin)
+  RewriteCond %{REQUEST_URI} !(wp-includes)
+  RewriteCond %{REQUEST_URI} !(wp-content/plugins)
+  RewriteCond %{REQUEST_URI} !(wp-content/themes/score)
+  RewriteRule ^(.*)$ /wp-content/themes/score/index.php [L]
+  #RewriteRule ^(.*)$ brb.php [L] 
+</IfModule>
+# END BALLS
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.php$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
+# speed tweaks for balls needs eval on other machines, seemed to speed up beta
+<IfModule mod_deflate.c>
+  # compress content with type html, text, and css
+  AddOutputFilterByType DEFLATE text/html text/plain text/javascript text/css application/json application/x-httpd-php application/font-woff application/x-font-woff
+  <IfModule mod_headers.c>
+  # properly handle requests coming from behind proxies
+      Header append Vary User-Agent
+  </IfModule>
+</IfModule>
+
+# Added security needs conditional redirect
+<Files wp-login.php>
+  #Order deny,allow
+  #Deny from All
+  #Allow from 173.196.154.99
+  #Allow from 68.7.0.219
+  #require valid-user
+</Files>
+<Files wp-config.php>
+  Order deny,allow
+  Deny from All
+  #Office IP
+  Allow from 173.196.154.99
+  require valid-user
+</Files>
+# END Added Security
+

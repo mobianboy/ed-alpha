@@ -1,0 +1,164 @@
+#!/bin/bash
+#Compression Script
+
+compress_less(){
+	if [ ! -z $2 ]
+	then	
+		lessc "/home/eardish/alpha-web/wp-content/themes/score/less/"$2"/desktop.less" > "/home/eardish/alpha-web/wp-content/themes/score/css/"$2"/desktop.min.css" --yui-compress
+    echo ".../css/"$2"/"$2".min.css compression complete"
+	else	
+		FILES=$(find /home/eardish/alpha-web/wp-content/themes/score/less/ -type f -name *.less)
+		for file in $FILES;
+		do
+			file=${file/.less/};
+			if [[ $file != */lib* ]]
+			then
+				IFS='/' read -a array <<< "$file"
+				if [ -z "${array[9]}" ];
+				then
+					echo "---rootFile::Skip---";
+				else
+					if [[ $file != *tablet* ]]
+					then
+						if [[ $file != *base* ]]
+						then
+							if [[ $file != *phone* ]]
+							then
+								lessc $file".less" > "/home/eardish/alpha-web/wp-content/themes/score/css/${array[8]}/${array[9]}.min.css" --yui-compress
+								echo ".../css/${array[8]}/${array[9]}.min.css compression complete"
+							fi
+						fi
+					fi
+				fi
+			fi
+		done
+		echo "LESS compression for Balls theme complete"
+	fi
+}
+compress_userbar_less(){
+  lessc "/home/eardish/alpha-web/wp-content/themes/score/less/userbar/desktop.less" > "/home/eardish/alpha-web/wp-content/themes/score/css/userbar/desktop.min.css" --yui-compress
+  echo "Done with userbar LESS Compress"
+}
+compress_js(){
+  if [ ! -z $2 ] 
+  then
+    uglifyjs --lint -co "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls."$2".min.js" "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls."$2".js"; 
+    echo "Complete minifying "$2".js to "$2".min.js";
+  else
+    for file in $(\ls -d /home/eardish/alpha-web/wp-content/themes/score/js/*.js);
+    do
+      file=${file/.js/}
+      if [[ $file != *.min* ]]
+      then
+        uglifyjs -o  $file".min.js" $file".js"
+        echo $file".js: minification complete."
+      fi
+    done
+    for file in $(\ls -d /home/eardish/alpha-web/wp-content/themes/score/js/balls/*.js);
+    do
+      file=${file/.js/}
+      if [[ $file != *.min* ]]
+      then
+        uglifyjs -o  $file".min.js" $file".js"
+        echo $file".js: minification complete."
+      fi
+    done
+  fi
+}
+compress_jquery_plugins(){
+  #Plugins
+  #uglifyjs -o /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/ttl/jquery.ttl.min.js /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/ttl/jquery.ttl.js
+  #echo "jquery.ttl.js: minification complete"
+  #uglifyjs -o /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/editinplace/jquery.editinplace.min.js /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/editinplace/jquery.editinplace.js
+  #echo "jquery.editinplace.js: minification complete" 
+  #uglifyjs -o /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/draghover/jquery.draghover.min.js /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/draghover/jquery.draghover.js
+  #echo "jquery.draghover.js: minification complete"
+  uglifyjs -o /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/motioncaptcha/jquery.motionCaptcha.0.2.min.js  /home/eardish/alpha-web/wp-content/themes/score/js/lib/jquery/plugins/motioncaptcha/jquery.motionCaptcha.0.2.js
+  echo "jquery.motionCaptcha.0.2.js: minification complete"
+}
+compress_userbar(){
+  if test "$1" == "less"
+  then
+    lessc "/home/eardish/alpha-web/wp-content/themes/score/css/userbar.less" > "/home/eardish/alpha-web/wp-content/themes/score/css/userbar.min.css" --yui-compress
+    echo "Complete compressing and minifying userbar.less to uesrbar.min.css";
+  fi
+  if test "$1" == "js"
+  then
+    uglifyjs -o "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.userbar.min.js" "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.userbar.js"
+    echo "complete with balls.userbar.js to balls.userbar.min.js";
+  fi
+}
+compress_contribute(){
+  if test "$1" == "less"
+  then
+    lessc "/home/eardish/alpha-web/wp-content/themes/score/css/userbar.less" > "/home/eardish/alpha-web/wp-content/themes/score/css/userbar.min.css" --yui-compress
+    echo "Complete compressing and minifying userbar.less to uesrbar.min.css";
+  fi
+  if test "$1" == "js"
+  then
+    uglifyjs -o "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.file.min.js" "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.file.js"
+    echo "complete with balls.file.js to balls.file.min.js";
+    uglifyjs -o "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.contribute.min.js" "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.contribute.js"
+    echo "complete with balls.contribute.js to balls.contribute.min.js";
+  fi
+}
+compress_player(){
+  uglifyjs -o "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.player.min.js" "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.player.js"
+  echo "complete with balls.player.js to balls.player.min.js"
+  uglifyjs -o "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.ePlayer.min.js" "/home/eardish/alpha-web/wp-content/themes/score/js/balls/balls.ePlayer.js"
+  echo "complete with balls.ePlayer.js to balls.ePlayer.min.js"
+}
+compress_main(){
+  uglifyjs -o "/home/eardish/alpha-web/wp-content/themes/score/js/main.min.js" "/home/eardish/alpha-web/wp-content/themes/score/js/main.js"
+  echo "complete with main.js to main.min.js"
+}
+
+compress_all(){
+  compress_less "y"
+  #echo "LESS to CSS and minification compression complete.";
+  echo "============--------------===========--------------=================-----------============="
+  compress_js
+  #echo "JS file compression complete."
+}
+#compress(){
+#  type="";
+#  for ARG in "$@"
+#  do
+#    case "$ARG" in
+#   case1) setType();
+#  done
+#}
+
+
+for ARG in "$@"
+do
+  case "$ARG" in
+  less) compress_less "y"
+        ;;
+  more) compress_less "$@"
+        ;;
+  js) compress_js
+      ;;
+  all) compress_all
+      ;;
+  userbar_less) compress_userbar_less
+      ;;
+  userbar_js) compress_userbar "js"
+      ;;
+  contribute_js) compress_contribute "js"
+      ;;
+  mainjs) compress_main
+      ;;
+  #player) compress_player
+  #    ;;
+  jquery) compress_jquery_plugins
+      ;;
+  balls) compress_js "$@"
+      ;;
+  #balls.css) compress_js "balls.css"
+  #    ;;
+esac
+done
+NOW=$(date +"%m-%d-%Y %T")
+ExitStr="Completed on: $NOW."
+echo $ExitStr

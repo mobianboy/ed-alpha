@@ -1,0 +1,354 @@
+/**
+ * Post Desktop Styles
+ *
+ * The styles in this file are desktop specific.
+ *
+ */
+
+@import "base";
+@import "../lib/ed.chosen.less";
+
+section[id^="/news/"]{
+  padding-top:30px;
+  width:980px;
+    /**
+		 * -----------------
+		 * @subsection Archive
+		 * -----------------
+		 */
+      .news-head {
+        background: transparent;
+        overflow:hidden;
+        height: 355px;
+        margin-bottom: 30px;
+        margin-top: 0;
+        h2{
+          .font-size(38);
+          color: @red;
+          .text-shadow();
+          font-weight: 200;
+          margin: 0;
+          height: 38px;
+        }
+        hr{
+	        margin-top: 0;
+        }
+        div {
+          width: 100%;
+          height: auto;
+        }
+        .featured {
+          width: 100%;
+          height: auto;
+          section {
+            width: 100%;
+          }
+          .col1 {
+            width: 550/980*100%;
+          }
+          .col2 {
+            width: 200/980*100%;
+          }
+          .col3 {
+            width: 200/980*100%;
+          }
+          .col1, .col2, .col3 {
+            float: left;
+          }
+          .col1, .col2 {
+            margin-right: 14px;
+          }
+          .col2, .col3 {
+            .tile {
+              margin-bottom: 14px;
+              &:last-child {
+                  margin-bottom: 0;
+              }
+            }
+          }
+          .tile {
+            display: block;
+            float: left;
+            position: relative;
+            /*background-color: #666;*/
+            .caption{
+	            position: absolute;
+	            width: 100%;
+	            bottom: 0;
+	            left: 0;
+	            z-index: 4;
+	            background: rgba(255,255,255,0.86);
+	            .box-sizing();
+	            h3{
+		            font-weight: 200;
+		            color: @red;
+		            .text-shadow();
+		            .font-size(28);
+		            margin: 0;
+		            width: 100%;
+		            .ellipsis();
+	            }
+	            P{
+		            font-weight: 400;
+		            color: @black;
+		            .text-shadow();
+		            .font-size(16);
+		            margin: 0;
+		            width: 100%;
+		            .ellipsis();
+	            }
+            }
+
+            /**
+             * Feature Article Tile
+             */
+            &.featureArticle {
+            	width: 550px;
+            	height: 306px;
+            	overflow: hidden;
+              background:#F1F1F1;
+            	img{
+                width:550px;
+                height:306px;
+              }
+              .caption{
+            		padding: 10px;
+	            	h3{
+			            .font-size(28);
+		            }
+		            P{
+			            .font-size(16);
+		            }
+            	}
+            }
+
+            /**
+             * Featured Artist/Song Tiles
+             */
+            &.featured {
+            	width: 100%;
+            	height: 126px;
+            	overflow: hidden;
+              .caption{
+            		padding: 5px 5px 7px;
+	            	h3{
+			            .font-size(16);
+		            }
+		            P{
+			            .font-size(11);
+		            }
+            	}
+              &.full {
+                width: 414px;
+                height: 166px;
+                margin-bottom: 14px;
+                text-align:center;
+                background-color:#F1F1F1;
+                .caption{
+	            		padding: 7px;
+                  text-align:left;
+		            	h3{
+				            .font-size(19);
+			            }
+			            P{
+				            .font-size(13);
+			            }
+	            	}
+              }
+            }
+          }
+        }
+      }
+
+      .header{
+          height: 60px;
+          margin: 0 0 20px;
+          float: left;
+          width: 650/980*100%;
+          margin-top: 0;
+          margin-right: 30/980*100%;
+          .topBar{
+            margin:0;
+            border-bottom: 1px solid #a2a2a2;
+            width: 100%;
+            select, .selectBox+div.chzn-container{
+              float:left;
+              left:0;
+              margin-left:5px;
+            }
+            select.order, select.order+.chzn-container{ width:70px; }
+            .chznContainerOffset(5px, 15px);
+            div.search{
+              width:470px;
+              margin-top:5px;
+              float:right;
+              input{
+                float:left;
+                width:432px;
+                height: 25px;
+                margin: 0 5px 8px 0;
+                padding-left: 5px;
+                font-weight: 200;
+                .font-size(15);
+                .box-sizing();
+                &:-moz-placeholder {
+                  color: #a6a6a6;
+                }
+                &::-webkit-input-placeholder {
+                  color: #a6a6a6;
+                }
+              }
+              div.find{
+                float: left;
+                width: 30px;
+                height: 24px;
+                .grayBtn();
+                span{
+                  display: block;
+                  width: 17px;
+                  height: 17px;
+                  .Sprite();
+                  background-position: -108px -14px;
+                  text-indent: -9999px;
+                  margin: 4px 7px;
+                }
+              }
+            }
+          }
+          .btmBar{
+            .viewing{
+              float: right;
+              font-style: normal;
+              .font-size(16);
+              color: #8a8a8a;
+              &:before{
+                display: none;
+              }
+            }
+        }
+      }
+			.explorer {
+				float: left;
+				width: 650/980*100%;
+				margin-top: 0;
+				margin-right: 30/980*100%;
+        text-align:right;
+        &>ul{ text-align:left; }
+			}
+			article {
+				width:100%;
+				height:124px;
+				overflow:hidden;
+				.thumbnail, .content {
+					float: left;
+					.box-sizing();
+				}
+				.thumbnail {
+					margin-top:2px;
+					width: 31.5384615%;
+					max-width:204px;
+					height: 31.5384615%;
+					min-height:124px;
+					position:relative;
+			    overflow:hidden;
+          div.date{
+            background:#B70007;
+            position:absolute;
+            bottom:30px;
+            display:block;
+            .font-size(12);
+            padding:1px 4px 1px 8px;
+            margin-left:-4px;
+            color:@white;
+            box-shadow:1px 2px 3px 0px #999999;
+            border-radius:2px;
+          }
+        }
+				.content {
+					width: 66.1538462%;
+					height: 66.1538462%;
+					height: 124px;
+					margin-left: 15px;
+				}
+				.excerpt {
+					height: 45px;
+				  margin: 6px 0 0 0 ;
+				  .font-size(12);
+				  .tahoma();
+				  color: #6b6b6b;
+        }
+			}
+
+			section {
+				&.rail {
+    			&.right {
+      			width: 300/980*100%;
+    			  margin-top:-61px
+          }
+	  		}
+			}
+  /*.archivePagination{
+    position:fixed;
+    min-height:18px;
+    max-height:250px;
+    right:0;
+    top:35%;
+    float:none;
+    clear:both;
+    background:rgba(230,230,230,.9);
+    width:28px;
+    ul{
+      width:24px;
+      min-height:24px;
+      margin-left:6px;
+      li{
+        width:100%;
+        background:none;
+        font-weight:200;
+        .font-size(20);
+        padding: 6px 6px 2px 4px;
+        .borderRadius(0, 0, 4px, 4px);
+        a{
+          color:@mdGray;
+        }
+        &:hover{
+           a{
+            color:@black;
+          }
+        }
+        &.active{
+          width:24px;
+          .gradient(#cd1e24, #ac1a1e);
+          margin-left:-12px;
+          a{
+            color:@white;
+            display:block;
+            margin-left:8px;
+          }
+        }
+      }
+    }
+  }*/
+}
+section[id^="/article/"]{
+		.rail {
+	      position: relative;
+        margin-top:35px;
+	      &.left, &.right {
+	      	float: left;
+	      }
+	      &.left {
+          width:164px;
+          min-height:20px;
+          //width: 165/980*100%;
+	      }
+	      &.right {
+	        width: 300/980*100%;
+	      }
+	  }
+	  .context {
+	    	float: left;
+	    	width: 615/980*100%;
+	    	margin: 35px 30/980*100% 70px 0;
+	  }
+}

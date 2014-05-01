@@ -1,0 +1,601 @@
+/**
+ * Account Settings Base Styles
+ *
+ * The styles in this file are desktop specific.
+ *
+ */
+
+@import "../base";
+//@import "../lib/ed.chosen.less";
+
+
+body>section[id*="/account/settings/"]{
+  &>h1{
+    width: 100%;
+    margin-bottom: 0;
+    border-bottom: 1px solid @ltGray;
+    color: @red;
+    font-weight: 300;
+    span{
+      .Sprite();
+      background-position: -465px -266px;
+      width: 26px; height: 26px;
+      display: block;
+      float: left;
+      margin: 2px 6px 0 0;
+    }
+  } // end &>h1
+  &>section{
+    display: block;
+    float: left;
+    width: 100%;
+    //margin-bottom: 10px;
+    border-bottom: 1px solid @mdGray;
+    position: relative;
+    &:last-of-type{
+      //border-bottom: 0; // taken off while page is still short
+    }
+    &.locked{
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        background-color: fade(@ltGray, 80%);
+        width: 100%; height: 100%;
+        z-index: 3;
+      }
+      &:after {
+        content: "Coming Soon";
+        display: block;
+        position: absolute;
+        top: 25%; left: 45%;
+        background-color: transparent;
+        color: @red;
+        font-size: 2.5rem;
+        font-weight: 300;
+        z-index: 4;
+      }
+    }
+    &.profVisibility{}
+    &.changeEmail{}
+    &.changePassword{
+			.options{
+				.tooltip{
+					display: block;
+					width: 295px;
+					position: absolute;
+					bottom: 233px;
+					left: 103px;
+					background-color: @white;
+					border: 1px solid @ltGray;
+					text-align: center;
+					border-radius: 8px;
+					// add shadow
+					box-shadow: 2px 2px 10px -4px @black;
+					opacity: 1;
+					.transition(0.5s, ease);
+					&.hidden, &.hide{
+						display: block;
+						opacity: 0;
+					}
+					&.token{
+						bottom: 208px;
+						left: 203px;
+					}
+					span.triangle{
+						width: 50px;
+						height: 35px;
+						position: absolute;
+						bottom: -34px;
+						left: 115px;
+						overflow: hidden;
+						.transform(rotate(180deg));
+						&:after{
+							content: "";
+							display: block;
+							width: 30px;
+							height: 30px;
+							background-color: @white;
+							.transform(rotate(45deg));
+							position:absolute;
+							bottom: -15px;
+							left: 10px;
+							box-shadow: -2px -2px 10px -2px @black;
+						}
+					}
+					h1{
+						color: @red;
+						width: 95%;
+						float: left;
+						margin: 12px 2.5%;
+						border-bottom: 1px solid @ltrGray;
+						font-weight: 300;
+					}
+					p{
+						width: 95%;
+						float: left;
+						clear: left;
+						padding: 0;
+						margin: 0 2.5% 15px;
+					}
+					button.close{
+						.notButton();
+						position: absolute;
+						top: 5px; right: 5px;
+						.Sprite();
+						background-position: -220px -64px;
+						width: 21px; height: 19px;
+					}
+				}
+			}
+		}
+    &.language{}
+    &.explicit{}
+    &.allowComments{}
+    &.emailNotifications{}
+    &.blockList{}
+    //&.canMessage{}
+    &>div{
+      display: block;
+      float: left;
+      clear: none;
+      margin: 20px 0;
+      &.label{
+        width: 200px;
+      }
+      &.options{
+        display: block;
+        div.passReq{
+          float: left;
+          clear: none;
+          max-width: 425px;
+          margin-left: 15px;
+          margin-top: -110px;
+          opacity: 0;
+          .transition(0.5s, ease);
+          color: @mdGray;
+          ul{
+            display: block;
+            margin: 10px 0 0 20px;
+          }
+        }
+        select{
+          width: 250px;
+          // chosen stuff here
+        }
+        a{
+          color: @red;
+          &:hover, &:active, &:focus{
+            text-decoration: underline;
+          }
+          &.forgotPass{
+            float: left;
+            display: inline-block;
+            margin-bottom: 10px;
+          }
+        }
+        p{
+          display: block;
+          float: left;
+          clear: left;
+          margin: 0;
+          &.currEmail{
+            .email{
+              color: @red;
+            }
+          }
+        }
+        input{
+          display: inline-block;
+          float: left;
+          clear: left;
+					&.hidden, &.hide{ display: none; }
+          &[type=text], &[type=password]{
+            width: 300px; height: 25px;
+            margin: 10px 0 0; padding: 3px;
+            .gradient(fade(@ltrGray, 15%), rgba(255, 255, 255, 0.9));
+            border: 1px inset @ltrGray;
+            &:first-of-type{ margin-top: 0; }
+          }
+          &.newPass, &.confirmNewPass{
+            &:focus ~ .passReq{
+              opacity: 1;
+            }
+          }
+          &[type=checkbox]{
+            &:first-of-type{ margin-left: 0; }
+            clear: none;
+            margin: 0 12px 0 15px;
+            visibility: hidden;
+            &+label{
+              position: relative;
+              &:before{
+                content: " ";
+                display: inline-block;
+                float: left;
+                .Sprite();
+                background-position: -493px -270px;
+                width: 19px; height: 19px;
+                position: absolute;
+                top: -3px; left: -25px;
+              }
+            }
+            &:checked+label{
+              &:before{ background-position: -514px -270px; }
+            }
+          }
+          &[type=radio]{
+            margin-right: 10px;
+            visibility: hidden;
+            &+label{
+              position: relative;
+              &:before{
+                content: " ";
+                display: inline-block;
+                float: left;
+                .Sprite();
+                background-position: -535px -271px;
+                width: 18px; height: 18px;
+                position: absolute;
+                top: -2px; left: -25px;
+              }
+            }
+            &:checked+label{
+              &:before{ background-position: -555px -271px; }
+            }
+          }
+        }
+        label{
+          display: inline-block;
+          float: left;
+          clear: none;
+          cursor: pointer;
+        }
+        button{
+          display: inline-block;
+          float: left;
+          clear: left;
+          border: 0;
+          border-radius: 2px;
+          margin: 10px 0 0;
+          color: @white;
+          .Sprite();
+          background-position: -615px -345px;
+          width: 126px; height: 36px;
+          &:hover, &:focus, &:active{ background-position: -615px -384px; }
+          &.submitPass{
+            background-position: -743px -345px;
+            width: 156px; height: 36px;
+            margin-right: 151px;
+            &:hover, &:focus, &:active{ background-position: -743px -384px; }
+          }
+          &.submitSettings{
+            text-transform: uppercase;
+          }
+        }
+      }
+      &.help{
+        display: block;
+        float: right;
+        width: 400px;
+        position: absolute;
+        top: 2px; right: 0;
+        margin: 0;
+        background: @white;
+        border: 1px solid @ltGray;
+        z-index: 1;
+        &.hidden, &.hide{
+          z-index: 0;
+          button.helpBtn{ 
+            display: block; 
+            visibility: visible;
+            color: #333333;
+            span{
+              background-position: -631px -10px;
+              transform: rotate(180deg);
+              -ms-transform: rotate(180deg);
+              -webkit-transform: rotate(180deg);
+            }
+          }
+        }
+        button.helpBtn{
+          float: right;
+          margin: 4px 4px 0 0;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          color: @red;
+          &:hover{
+            color: @red;
+            span{ background-position: -642px -10px; }
+          }
+          span{
+            display: inline-block;
+            .Sprite();
+            background-position: -642px -10px;
+            width: 9px; height: 5px;
+            margin-left: 3px;
+            position: relative; top: -3px;
+            transition: transform 0.5s linear 0s;
+          }
+        }
+        p{
+          background-color: @white;
+          float: left;
+          clear: right;
+          margin: 8px 12px 12px;
+        }
+        dl{
+          display: block;
+          float: left;
+          clear: left;
+          margin: 0 12px 12px;
+          dt{
+            color: @red;
+          }
+          dd{
+            margin-left: 10px;
+          }
+        }
+      } // end .help
+    } // end div
+  } // end &>section
+  &>div.popups{
+    position: fixed;
+    display: block;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: fade(@black, 70%);
+    z-index: 17;
+		&>div{
+			display: block;
+			background-color: #fff;
+			border-radius: 8px;
+			overflow: hidden;
+			position: absolute;
+			top: 50%; left: 50%;
+			&.privacyList{
+				width: 500px; height: 450px;
+				margin-left: 500px / 2 * -1;
+				margin-top: 450px / 2 * -1 - 100;
+				select{
+					display: block;
+					width: 450px;
+					height: 275px;
+					margin: 0 auto;
+				}
+				// Chosen
+				/*
+				 @chznDownArrowWrap:   ~".chzn-container-single .chzn-single div";
+				 @chznDownArrowSprite: ~".chzn-container-single .chzn-single div b";
+				 // Up Arrow
+				 @chznUpArrowWrap:     ~".chzn-container-active .chzn-single-with-drop div";
+				 @chznUpArrowSprite:   ~".chzn-container-active .chzn-single-with-drop div b";
+				 // Deselect Sprite
+				 // use &:hover for hover states
+				 @chznDeselectSprite:  ~".chzn-container-single .chzn-single abbr";
+				 // Drop Down Container
+				 @chznDropDown:        ~".chzn-container .chzn-drop";
+				 @chznResultsHover: ~".chzn-container .chzn-results .highlighted";
+				*/
+				.chzn-container{
+					left: 25px;
+					.chzn-choices{
+						background-color: @ltrGray;
+						.search-choice{
+							position: relative;
+							background-color: @white;
+							color: @black;
+							margin: 5px 5px 0;
+							padding: 4px;
+							a{ background-position: -197px -160px; }
+						}
+					}
+				}	
+			}
+			p{
+				width: 450px;
+				margin: 0 auto 10px;
+				color: @mdGray;
+				.font-size(16);
+				&.big{
+					.font-size(18);
+				}
+				span{
+					color: @red;
+				}
+			}
+			// Common
+			h2{
+        border-bottom: 1px solid @ltGray;
+        margin: 30px auto 10px;
+        width: 450px;
+        color: @red;
+        font-weight: 300;
+        font-size: 3.4rem;
+      }
+			div{
+				&.buttons{
+					width: 450px;
+					margin: 20px auto 0;
+					text-align: center;
+					button{
+						&:last-of-type{ margin-left: 10px; }
+					}
+				}
+				button{
+					.notButton();
+					border-radius: 2px;
+					text-transform: uppercase;
+					color: @white;
+					width: 126px; height: 36px;
+					.Sprite();
+					background-position: -615px -345px;
+					&:hover, &:active, &:focus{
+						background-position: -615px -384px;
+					}
+					&.red{
+						background-position: -615px -422px;
+						&:hover, &:active, &:focus{
+							background-position: -615px -460px;
+						}
+					}
+				}
+			}
+			button.close{
+        .notButton();
+        color: @mdGray;
+        float: right;
+        margin: 15px 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover{ color: @red; }
+        &:after {
+          content: " ";
+          position: relative;
+          float: right;
+          .Sprite();
+          background-position: -220px -62px;
+          width: 21px; height: 21px;
+          margin: 0 5px 0 8px;
+          top: -5px;
+        }
+      }
+		}// end &>div
+  } // end body>div.popups
+} // end body>section[id=account]
+
+div.popupWrap{
+  position: fixed;
+  display: block;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: fade(@black, 70%);
+  z-index: 17;
+  ::-webkit-scrollbar{}
+  ::-webkit-scrollbar-button{
+    //display:none;
+  }   
+  ::-webkit-scrollbar-track{
+    background-color:@mdGray;
+  }   
+  ::-webkit-scrollbar-track-piece{}
+  ::-webkit-scrollbar-thumb{
+    background-color:@red;
+  }   
+  ::-webkit-scrollbar-corner{
+    //display:none;
+  }   
+  ::-webkit-resizer{
+    //display:none;
+  }
+  div.accInitPopup{
+    background-color: #fff;
+    width: 630px; height: 465px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%; left: 50%;
+    margin-top:  465px / 2 * -1;
+    margin-left: 630px / 2 * -1;
+    &>*{ margin-left: 28px; }
+    span.close{
+      color: @mdGray;
+      float: right;
+      margin: 10px 6px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover{ color: @red; }
+      &:after{
+        content: " ";
+        position: relative;
+        float: right;
+        .Sprite();
+        background-position: -220px -62px;
+        width: 21px; height: 21px;
+        margin: 0 5px 0 8px;
+        top: -4px;
+      }
+    }
+    h2{
+      border-bottom: 1px solid #dadada;
+      margin: 20px 24px 10px 28px;
+      color: @red;
+      font-weight: 300;
+    }
+    p{
+      color: #8c8c8c;
+      font-size: 1.2rem;
+      margin-right: 24px;
+      margin-bottom: 10px;
+      &:nth-of-type(2){
+        font-size: 1.4rem;
+        clear: both;
+      }
+    }
+    label{
+      display: block;
+      color: #8c8c8c;
+      font-size: 1.4rem;
+      float: left;
+      clear: left;
+      margin-bottom: 5px;
+      &.radio{
+        text-transform: uppercase;
+        clear: none;
+        margin-right: 90px;
+        margin-left: 12px;
+      }
+    }
+    input{
+      display: block;
+      float: left;
+      &[type=text], &[type=password]{
+        width: 288px; height: 34px;
+        background-color: #e9e9e9;
+        clear: both;
+        margin-bottom: 10px;
+        &.red{background: #B70007;color: @white;}
+        &.green{background: #00B707;color: @white;}
+      }
+      &[type=radio]{
+        clear: none;
+        visibility: hidden;
+        &+label{
+          position: relative;
+          &:before{
+            content: " ";
+            display: inline-block;
+            float: left;
+            .Sprite();
+            background-position: -535px -271px;
+            width: 18px; height: 18px;
+            position: absolute;
+            top: -2px; left: -25px;
+          }
+        }
+        &:checked+label:before{
+          background-position: -555px -271px;
+        }
+      }
+    }
+    button{
+      float: left;
+      clear: both;
+      margin-bottom: 50px;
+      margin-left: 185px;
+      .Sprite();
+      background-position: -615px -345px;
+      width: 126px; height: 36px;
+      border: 0;
+      border-radius: 4px;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      color: @white;
+    }
+  }
+}
+

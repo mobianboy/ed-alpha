@@ -1,0 +1,947 @@
+/**
+ * Song Base Styles
+ *
+ * The styles in this file are desktop specific.
+ *
+ */
+
+@import "base";
+
+
+.headingStyle(@font-size, @color){
+	font-size: @font-size;
+	color: @color;
+	font-style: italic;
+	font-weight: bold;
+	display: block;
+	float: left;
+	margin: 0;
+	width: 560px;
+}
+
+section{
+  position:relative;
+  &[id^="/song/"]{
+  //NEW SINGLE STYLES
+    &>section{
+      @pageW:780px; @w: @pageW;
+      width:@w;
+      position:relative;
+      float:left;
+      clear:left;
+      overflow:hidden;
+      &.rail.right.song{
+        right:0; top:25px;
+      }
+      &.header{
+        //height:75px;
+        margin-top:25px;
+        header{
+          width:100%;
+          border-bottom:2px inset @mdGray;
+          overflow:hidden;
+          margin: 0 0 10px;
+          display:block;
+          position:relative;
+          h1{
+            display:block;
+            max-width:85%;
+            height:30px;
+            float:left;
+            color:@mdGray;
+            margin:0;
+            font-weight:200;
+            text-transform:capitalize;
+            .ellipsis();
+          }
+          h2{
+            display:block;
+            float:left;
+            clear:left;
+            max-width:85%;
+            height:25px;
+            margin:0;
+            .ellipsis();
+            a{
+              color:@red;
+              margin:0;
+              height:25px;
+              font-weight:200;
+              text-transform:capitalize;
+            }
+          }
+          .deleteSong{
+            position:absolute;
+            top:1px; right:0;
+            border-radius:2px;
+            border:none;
+            background-color:@red;
+            color:@white;
+            padding:4px;
+          }
+          .genre{
+            position:absolute;
+            bottom:0; right:0;
+            color:@red;
+            height:20px;
+            overflow:hidden;
+            &:before{
+              content:"";
+              display:block;
+              .Sprite();
+              background-position:-129px -14px;
+              width:16px; height:17px;
+              margin:2px 8px 0 0;
+              float:left;
+              position:relative;
+              top:-2px;
+            }
+          }
+        } // end header (tag)
+        .song{
+          @h: 200px;
+          width:@pageW;
+          height:@h;
+          margin-bottom:20px;
+          background:@white;
+          .art{
+            @w: 200px;
+            width:@w; height:197px; //190px?
+            float:left;
+            border-bottom:3px solid @red;
+            position:relative;
+            &.explicit{
+              &:before{
+                content:"explicit";
+                text-transform:uppercase;
+                background-color:@black;
+                color:@white;
+                font-weight:200;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+                padding:2px 4px;
+                position:absolute;
+                top:0; left:0;
+                z-index:1;
+              }
+            }
+            &>img{
+              width:@h; height:@h;
+              display:block;
+              border:0;
+              float:left;
+              position:relative;
+            }
+            .info{
+              @w: 200px;
+              @h:50px;
+              width:@w;
+              height:@h;
+              display:block;
+              position:relative;
+              top:-53px;
+              background-color:fade(@white, 75%);
+              overflow:hidden;
+              border-bottom: 3px solid #C70207;
+              &>img{
+                display:block;
+                width:50px; height:50px;
+                float:left;
+                background-color:@white;
+                //border:1px solid @black;
+              }
+              div{
+                float:right;
+                clear:right;
+                color:@dkGray;
+                margin: 4px 5px 0 0;
+                .playCount, .rateCount{
+                  color:@red;
+                }
+              }
+            }
+          } // End .art
+          .waveform, .buttons{
+            @w: @pageW - 200px - 5px;
+            @h: 200px / 2 - 3px;
+            float:left;
+            width:578px;
+            height:@h;
+            overflow:hidden;
+            position:relative;
+            &:last-child{ margin-bottom:0; }
+          }
+          .waveform{
+            @w: @pageW - 200px - 2px;
+            @h: 200px / 2 - 3px;
+            border:1px solid @ltrGray;
+            margin-bottom: 5px;
+            .buttonArea{
+              border-right:1px solid @ltrGray;
+              float:left;
+              height:@h;
+              @w:85px;
+              width:@w;
+              position:relative;
+              cursor:pointer;
+              .gradient( rgb(250,250,250), rgb(234,234,234) );
+              &>span{
+                display:block;
+                color:@red;
+                width:35px;
+                height:34px;
+                .font-size(14);
+                font-weight:500;
+                text-align:center;
+                margin: 24px auto;
+                padding:40px 0 0 2px;
+                .Sprite();
+                &.play{
+                  background-position:-243px -262px;
+                  &:hover{background-position:-280px -262px;}
+                }
+                &.pause{
+                  background-position:-317px -262px;
+                  &:hover{background-position:-353px -262px;}
+                }
+                &.stop{
+                  background-position:-391px -262px;
+                  &:hover{background-position:-428px -262px;}
+                }
+              }
+            }
+            .waveImage{
+              @w: @pageW - 200px - 85px - 7px;
+              @h: 200px / 2;
+              width:100%; height:@h;
+              display:block;
+              float:left;
+              overflow:visible;
+              position:relative;
+              img{
+                width:486px;
+                height:100%;
+                display:block;
+                position:absolute;
+                top:0; left:92px;
+                &[src$="waveform_default_thumb.svg"]{
+                  .transform(scaleX(2.8));
+                }
+              }
+              div{
+                display:block;
+                clear:none;
+                overflow:hidden;
+                position:relative;
+                padding: 2px 2px 2px 4px;
+                margin:0;
+                font-weight:200;
+                z-index:1;
+                .font-size(13);
+                &.bpm{
+                  background-color:@white;
+                  color:@black;
+                }
+                &.length{
+                  border:0;
+                  background-color:@mdGray;
+                  color:@white;
+                  height:14px;
+                  min-width:26px;
+                  float:right;
+                }
+                &.progress{
+                  background-color: fade( @white, 75% );
+                  width:0%;
+                  overflow:visible;
+                  position:absolute;
+                  top:0; bottom:0;
+                  padding:0;
+                  z-index:1;
+                  margin-left:92px;
+                  .progressTime{
+                    display:block;
+                    background-color:@white;
+                    color:@mdGray;
+                    position:absolute;
+                    right:-19px;
+                    bottom:1px;
+                    padding: 2px 5px 0;
+                    z-index:2;
+                  }
+                }
+              }
+            } // end .waveImage
+          } // End .waveforms
+          .buttons{
+            margin-top:5px;
+            .split{
+              width:48%; height:35px;
+              overflow:hidden;
+              float:left;
+              text-align:left;
+              &:first-child{ button:first-child{ margin-left:15px; } }
+              &.right{ 
+                float:right;
+                text-align:right; 
+                button:last-child{ margin-right:15px; }
+              }
+            }  
+            button{
+              height:23px; line-height:23px;
+              color:@white;
+              border:0;
+              border-radius:1px;
+              font-weight:200;
+              position:relative;
+              .Sprite();
+              padding:0 0 3px;
+              .font-size(13);
+              &.locked{
+                &:before{
+                  content: " ";
+                  display:block;
+                  width:100%; height:100%;
+                  background-color: fade( @white, 60%);
+                  position:absolute;
+                  top:0; left:0;
+                  z-index:1;
+                }
+              }
+              &>span{
+                display:inline-block;
+                .Sprite();
+                width:15px; height:15px;
+                position:relative;
+                top:0; left:0;
+                margin: 0 2px 0 2px;
+              }
+              &.atp{
+                background-position:-653px -7px;
+                width:113px;
+                &:hover{ background-position:-653px -32px; }
+                &>span{ top:3px; background-position: -712px -83px; }
+              }
+              &.download{
+                width:87px;
+                background-position:-768px -7px;
+                &:hover{ background-position:-768px -32px; }
+                &>span{ top:3px; background-position: -726px -83px; }
+              }
+              &.follow, &.unfollow, &.requested{
+                width:100px;
+                background-position:-855px -7px;
+                &:hover{ background-position:-855px -32px; }
+                &:before{
+                  content:"";
+                  display:inline-block;
+                  .Sprite();
+                  width:15px; height:15px;
+                  position:relative;
+                  top:0; left:0;
+                  margin: 0 2px 0 2px;
+                }
+              }
+              &.follow{
+                &:before{ top:3px; background-position: -740px -83px; }
+                &:after{
+                  content:"Follow Artist";
+                }
+              }
+              &.unfollow{
+                &:before{ top:3px; background-position: -740px -139px; }
+                &:after{
+                  content:"Unfollow";
+                }
+              }
+              &.requested{
+                &:before{ display:none; top:3px; background-position: -740px -139px; }
+                &:after{
+                  content:"Request Sent";
+                }
+                &:hover, &:focus{
+                  &:after{ content:"Cancel Request"; }
+                }
+              }
+              &.dish{
+                width:65px;
+                background-position:-955px -7px;
+                &:hover{ background-position:-955px -32px; }
+                &>span{ top:3px; background-position: -755px -83px; }
+              }
+              &.dig{
+                width:65px; 
+                background-position:-1022px -7px;
+                &:hover{ background-position:-1022px -32px; }
+                &>span{ 
+                  background-position: -771px -140px; 
+                  top:3px; left:-2px;
+                  width:11px; height:11px;
+                }
+              }
+              &.undig{
+                width:74px;
+                background-position:-855px -7px;
+                &:hover{ background-position:-855px -32px; }
+                &>span{ top:3px; background-position: -769px -83px; }
+              }
+            }
+            .rating, .communityRating{
+              text-align:right;
+              float:right;
+              width:50%;
+              border-top:1px solid @ltrGray;
+              min-height:35px;
+              padding-top:18px;
+              color:@ltGray;
+              .stars{
+                display:block;
+                float:right;
+                width:114px; height:20px;
+                margin:-3px 15px 0 6px;
+                position:relative;
+                div{
+                  .Sprite();
+                  position:absolute;
+                  top:0; left:0;
+                  width:114px; height:20px;
+                  &.full{ background-position: -537px -31px; }
+                  &.progress{ background-position: -537px -53px; width:0%; }
+                }
+              }
+            }
+            .rate{
+              clear:both;
+              text-align:right;
+              height:35px;
+              padding-top:18px;
+              color:@ltGray;
+              .stars{
+                float:right;
+                width:140px;
+                height:20px;
+                position:relative;
+                margin:-3px 15px 0 6px;
+                div{
+                  width:20px;
+                  height:19px;
+                  float:left;
+                  margin-left:8px;
+                  .Sprite();
+                  background-position:-537px -31px;
+                }
+              }
+              &.able .stars{
+                div{
+                  &.hover{
+                    background-position:-537px -53px;
+                    cursor:pointer;
+                  }
+                  &.red{
+                    background-position:-537px -53px;
+                  }
+                } 
+              }
+            }
+          } // end .buttons
+        } // End .song
+      } // End .header
+
+      // COMMENTS
+      &.comments{
+        @w: @pageW;
+        background-color:#F6F6F6;
+        margin-top:15px;
+        margin-bottom:10px;
+        position:relative;
+        overflow:visible;
+        a{
+          color:@red;
+          text-decoration:none;
+          cursor:pointer;
+          &:active, &:focus{ text-decoration:underline; }
+        }
+        h3{
+          background-color:#F6F6F6;
+          color:@mdGray;
+          border-bottom: 3px solid @red;
+          margin:0;
+          text-align:left;
+          .font-size(20);
+          font-weight:500;
+        }
+        button.showMore{
+          border:thin solid @ltrGray;
+          padding:10px 18px;
+          margin:3px auto;
+          background-color:@white;
+          color:@red;
+          font-weight:200;
+          border-radius:3px;
+          display:block;
+        }
+        &>ul{ // comments ul
+          margin:90px 0 0;
+          padding:15px;
+          width:@pageW - (15*2);
+          overflow:visible;
+          display:block;
+          float:left;
+          text-align:left;
+          min-height:5px;
+          background-color:#F0F0F0;
+          &:empty{ visibility:hidden; }
+          &>li{
+            display:block;
+            float:left;
+            margin:10px 0;
+            padding:0;
+            width:100%;
+            overflow:visible;
+            position:relative;
+            &:first-of-type{ margin:0; }
+            div.edit{
+              position:absolute;
+              top:0; right:0;
+              background-color:#F0F0F0;
+              width:110px;
+              border:1px solid @ltGray;
+              z-index:1;
+              &.hidden, &.hide{
+                display:block;
+                visibility:visible;
+                width:auto;
+                border:none;
+                top:1px; right:1px;
+                span.gear{ background-position:-690px -84px; }
+                &>ul{ display:none; }
+              }
+              span{
+                display:block;
+                float:right;
+                .Sprite();
+                width:13px; height:13px;
+                cursor:pointer;
+                position:relative;
+                z-index:1;
+                &.gear{
+                  width:22px; height:10px;
+                  margin:4px 4px 0 0;
+                  background-position: -690px -96px;
+                  &:hover, &:active, &:focus{ background-position:-690px -96px; }
+                }
+                &.delete{
+                  background-position: -2px -99px;
+                }
+              }
+              &>ul{ // edit comment ul
+                display:block;
+                float:left;
+                clear:both;
+                width:100%;
+                position:relative;
+                margin-top:-14px;
+                li{
+                  display:block;
+                  padding:5px 0 5px 8px;
+                  color:@black;
+                  cursor:pointer;
+                  &:first-child{ padding-top: 7px; }
+                  &:hover, &:focus, &:active{ color:@red; background-color:@white; }
+                  &.locked{
+                    background-color:@dkGray;
+                    cursor:auto;
+                    &:hover, &:focus, &:active{ color:@black; background-color:@dkGray; }
+                  }
+                }
+              }
+            } // end .edit
+            img.userThumb{
+              display:block;
+              float:left;
+              width:50px; height:50px;
+              margin-right:5px;
+            }
+            &:last-of-type>div.content{ border-bottom:none; }
+            &>div.content{
+              width:675px;
+              min-height:90px;
+              display:block;
+              float:left;
+              clear:none;
+              border-bottom:1px inset @ltGray;
+              padding-bottom:10px;
+              margin-left:5px;
+              h4{
+                float:left;
+                margin:0;
+                font-size:1.3rem;
+                font-weight:200;
+                color:@ltGray;
+                a{
+                  font-size:1.6rem;
+                  font-weight:400;
+                  color:@red;
+                  //margin-right:4px;
+                }
+              }
+              p.content{
+                float:left;
+                clear:left;
+                margin:8px 0;
+                color:@mdGray;
+              }
+              button{
+                &.dig, &.undig{
+                  .notButton();
+                  float:left;
+                  clear:left;
+                  display:block;
+                  font-size:1.3rem;
+                  font-weight:400;
+                  color:@red;
+                  &:before{
+                    content: attr(data-dig-count) " Digs - ";
+                  }
+                  &.isOwner{
+                    visibility:hidden;
+                    cursor:auto;
+                    &:before{
+                      content:attr(data-dig-count) " Digs";
+                      display:block;
+                      visibility:visible;
+                    }
+                  }
+                }
+                //&.dish{}
+              }
+            }
+          } // end li
+        } // end &>ul
+        div.dishInput{
+          margin:0;//15px 15px 0;
+          width:750px; height:60px;
+          position:absolute;
+          left:15px; top:38px;
+          background-color:#F6F6F6;
+          img.currUser{
+            float:left;
+            width:50px; height:50px;
+            margin-right:5px;
+          }
+          div.comment{
+            float:left;
+            margin-left:5px;
+            width:750px - 50 - (5*2);
+            //position:relative;
+            textarea{
+              float:left;
+              width:100%; height:25px;
+              line-height:22px;
+              border:1px solid #d2d2d2;
+              background:@white;
+              resize:none;
+              padding: 3px 5px 3px 10px;
+              .box-sizing();
+              font-weight:100;
+              .font-size(14);
+              &::-webkit-input-placeholder{ color: #878787; }
+              &:-moz-input-placeholder{ color:#878787; }
+            }
+          }
+          input.post{
+            float:right;
+            margin:10px 10px 0 0;
+            width:61px; height:24px;
+            .redBtn();
+            border:none;
+            text-transform: uppercase;
+            font-weight:bold;
+            .font-size(12);
+          }
+        } // end div.dishInput
+      } // end .comments
+
+      // Other Songs
+      &.otherSongs{
+        h3{
+          width:100%;
+          background-color:#F6F6F6;
+          color:@mdGray;
+          border-bottom: 3px solid @red;
+          margin:10px 0 5px;
+          //margin:0;
+          text-align:left;
+          .font-size(20);
+          font-weight:500;
+        }
+        ul{
+          display:block;
+          width:100%;
+          overflow:hidden;
+          li{
+            display:block;
+            width:100%;
+            margin:0 0 5px;
+            line-height:32px;
+            overflow:hidden;
+            border-bottom:2px dotted @mdGray;
+            &:last-of-type{ border-bottom:0; }
+            img.songArt{
+              display:inline-block;
+              float:left;
+              clear:none;
+              width:25px; height:25px;
+              border:1px solid black;
+              overflow:hidden;
+            }
+            pre{
+              display:inline-block;
+              float:left;
+              margin:0; padding:0;
+              color:@ltGray;
+            }
+            span{
+              float:left;
+              clear:none;
+              margin-left:5px;
+              font-size:1.4rem;
+            }
+            .artist{
+              color:@red;
+              text-transform:capitalize;
+            }
+            .title{
+              color:@black;
+              margin-left:0;
+              text-transform:capitalize;
+            }
+            .length{
+              color:@mdGray;
+              font-size:1.2rem;
+              font-style:italic;
+              margin-left:8px;
+            }
+            .play, .atp{
+              float:right;
+              clear:none;
+              .Sprite();
+              width:23px; height:23px;
+              position:relative;
+              top:3px;
+              cursor:pointer;
+            }
+            .play{ background-position: -431px -7px;
+              &:hover, &:active, &:focus { background-position: -431px -32px; } }
+            .atp { background-position: -458px -7px;
+              &:hover, &:active, &:focus { background-position: -458px -32px; } 
+            }
+          } // end li
+        } // end ul
+      } // end .otherSongs
+    } // end &>section
+  }// End New Single Styles
+  &[id^="/music/"]{
+    .header .topBar{
+      position:relative;
+      &>div, &>select{
+        &.selectBox.location, &.selectBox.radius, &.selectBox.genre{
+          display:none;
+          &+div.chzn-container{
+            display:none;
+          }
+        }
+        &.advSearch, &.stdSearch{
+          float:right;
+          color:#B70007;
+          margin:10px 10px 0 0;
+        }
+        &.search{
+          float:right;
+          width:460px;
+          margin-top:5px;
+          input{
+            width:420px;
+          }
+        }
+      }
+      &.adv{
+        height:66px;
+        &>div, &>select{
+          float:left;
+          &.selectBox{
+            &+div.chzn-container{
+              display:block;
+              margin-left:8px;
+            }
+            &.location, &.radius, &.genre{
+              display:block; 
+            }
+          }
+          &.advSearch, &.stdSearch{
+            float:right; 
+          } 
+          &.search{
+            float:right;
+            width:622px;
+            input{
+              width:577px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+	
+div.playlistDialog{
+	position:absolute;
+	top: 197px; left: 7px;
+	border: 4px solid @widgetGray;
+	.boxShadow(0 0 26px #333);
+	z-index: 10;
+	float: left;
+	background: @white;
+	width: 172px;
+	&>div{
+		width: 170px;
+		height: 190px;
+		border: 1px solid @black;
+		float: left;
+		position: relative;
+		display: none;
+		h3{
+			background: @black;
+			color: @white;
+			font-style: italic;
+			font-weight: bold;
+			display: block;
+			width: 100%;
+			font-size: .75rem;
+			margin: 0;
+			width: 166px;
+			height: 23px;
+			margin: 2px;
+			padding: 3px 5px;
+			.box-sizing();
+			&:before{
+				content: "";
+				background-position:-26px -4px;
+				.Sprite();
+				width: 13px;
+				height: 14px;
+				display: block;
+				float: left;
+				margin: 3px 4px 0 1px;
+			}
+		}
+		div.btn{
+	  	.button(#666);
+	  	width: 60px;
+	  	position: absolute;
+	  	line-height: 19px;
+	  	&:hover{
+		  	background: @red;
+	  	}
+	  	&:first-of-type{
+	    	bottom: 10px;
+	    	left: 15px;
+	  	}
+	  	&:last-child{
+	    	bottom: 10px;
+	    	right: 15px;
+	  	}
+		}
+	  &.playlistSelect{
+	    ul{
+	      width: 162px;
+	      height: 125px;
+	      overflow-y:scroll;
+	      margin: 4px;
+	      &::-webkit-scrollbar {
+				    width: 14px;
+				}
+				 
+				&::-webkit-scrollbar-track {
+				    background-color: #aaa;
+				    width: 14px; 
+				}
+				 
+				&::-webkit-scrollbar-thumb {
+				    background-color: @red; 
+				    width: 8px;
+				}
+	      li{
+	        border-bottom: 1px dotted @mdGray;
+	        font-weight: bold;
+	        font-size: .75rem;
+	        list-style:none;
+	        height: 24px;
+	        width: 141px;
+	        &:hover{
+		        background:#e0e0e0;
+	        }
+	        input{
+	          margin: 6px;
+	          float: left;
+	        }
+	        div{
+	        	float: left;
+		        margin: 4px 0;
+	        }
+	      }
+	    }
+	  }
+	  &.newPlaylist{
+	  	font-size: .75rem;
+	  	input[type=text]{
+		  	background: #ccc;
+		  	border: 1px inset;
+		  	width: 162px;
+		  	font-family:"Source Sans Pro";
+		  	margin: 4px 4px 10px;
+		  	&::-webkit-input-placeholder {  color:@dkGray; }
+		  	&::-moz-placeholder { color:@dkGray; } /* firefox 19+ */
+		  	&:-moz-placeholder {color:@dkGray; }
+		  	padding-left: 4px;
+		  	.box-sizing();
+	  	}
+	  	input[type=checkbox]{
+		  	float: left;
+		  	margin: 2px 6px 0 7px;
+	  	}
+	  	label{
+		  	float:left;
+		  	color: @mdGray;
+	  	}
+	  	div.btn{
+		  	&:last-of-type{
+			  	background-color: @red;	
+		  	}
+	  	}
+	  }
+	}
+	&.select{
+		div.playlistSelect{
+			display: block;
+		}
+	}
+	&.new{
+		div.newPlaylist{
+			display: block;
+		}
+	}
+	div.close{
+		.Sprite();
+		background-position: -198px -7px;
+		width: 9px;
+		height: 9px;
+		position: absolute;
+		top: 9px; right: 9px;
+		z-index: 10;
+		display: block;
+		cursor: pointer;
+	}
+}	                  
+
+//**********************************************/

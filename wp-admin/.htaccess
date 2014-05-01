@@ -1,0 +1,28 @@
+#SSL SETUP
+#SSLOptions +StrictRequire
+#SSLRequireSSL
+#SSLRequire %{HTTP_HOST} eq "eardish.com"
+#RewriteCond %{HTTPS} =on
+#RewriteRule .* http://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+#ErrorDocument 403 https://eardish.com
+#SSL END
+
+#AUTH START
+AuthName "Restricted Area" 
+AuthType Basic 
+AuthUserFile /home/eardish/alpha-web/.htpasswd 
+AuthGroupFile /dev/null 
+require valid-user
+#AUTH END
+
+# Added security needs conditional redirect
+Order deny,allow
+Deny from All
+Allow from 173.196.154.99
+Allow from 172.250.130.142
+Allow from 66.75.47.69
+Allow from 68.229.86.154
+Allow from 99.171.188.219
+Allow from 68.101.208.85
+# END Added Security
+

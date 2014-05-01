@@ -1,0 +1,532 @@
+/**
+ * Utility Mixins
+ *
+ */
+
+@import "../variables";
+@import "fonts";
+
+// TODO: These text mixins have not been tested with new structure and need to be tweaked!!!
+
+.font-size(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  font-size: ~"@{pxValue}px"; 
+  font-size: ~"@{remValue}rem";
+}
+
+.line-height(@sizeValue){
+	@pxValue: @sizeValue;
+	@remValue: (@sizeValue / 10);
+	line-height: ~"@{pxValue}px";
+	line-height: ~"@{remValue}rem";
+}
+
+.bgImg (@url, @x: 0px, @y: 0px, @repeat: no-repeat, @color: transparent) {
+  @path: %("@{url}", @imagePath);
+  background: url(@path) @x @y @repeat @color;
+}
+.explodeSprite(@cordsX, @cordsY){
+  background-color: #f6f6f6;
+  .bgImg("%s/sprite-explodes-icons.png", @cordsX, @cordsY, no-repeat, #FFFFFF);
+}
+
+.explodeCover(bio, soon)       {.explodeSprite(0, 0);}
+.explodeCover(songs, soon)     {.explodeSprite(-194px, 0);}
+.explodeCover(videos, soon)    {.explodeSprite(-388px, 0);}
+.explodeCover(photos, soon)    {.explodeSprite(-582px, 0);}
+.explodeCover(fans, soon)      {.explodeSprite(-776px, 0);}
+.explodeCover(following, soon) {.explodeSprite(-970px, 0);}
+.explodeCover(rewards, soon)   {.explodeSprite(-1164px, 0);}
+.explodeCover(playlists, soon) {.explodeSprite(-1358px, 0);}
+
+.explodeCover(bio, hover)       {.explodeSprite(0, -194px);}
+.explodeCover(songs, hover)     {.explodeSprite(-194px, -194px);}
+.explodeCover(videos, hover)    {.explodeSprite(-388px, -194px);}
+.explodeCover(photos, hover)    {.explodeSprite(-582px, -194px);}
+.explodeCover(fans, hover)      {.explodeSprite(-776px, -194px);}
+.explodeCover(following, hover) {.explodeSprite(-970px, -194px);}
+.explodeCover(rewards, hover)   {.explodeSprite(-1164px, -194px);}
+.explodeCover(playlists, hover) {.explodeSprite(-1358px, -194px);}
+
+.explodeCover(bio)       {.explodeSprite(0, -388px);}
+.explodeCover(songs)     {.explodeSprite(-194px, -388px);}
+.explodeCover(videos)    {.explodeSprite(-388px, -388px);}
+.explodeCover(photos)    {.explodeSprite(-582px, -388px);}
+.explodeCover(fans)      {.explodeSprite(-776px, -388px);}
+.explodeCover(following) {.explodeSprite(-970px, -388px);}
+.explodeCover(rewards)   {.explodeSprite(-1164px, -388px);}
+.explodeCover(playlists) {.explodeSprite(-1358px, -388px);}
+
+.explodeCover(rewards, mini, soon)  {.explodeSprite(-1552px, 0);}
+.explodeCover(bio, mini, soon)      {.explodeSprite(-1676px, 0);}
+.explodeCover(playlists, mini, soon){.explodeSprite(-1800px, 0);}
+
+.explodeCover(rewards, mini, hover)   {.explodeSprite(-1552px -124px);}
+.explodeCover(bio, mini, hover)       {.explodeSprite(-1676px, -124px);}
+.explodeCover(playlists, mini, hover) {.explodeSprite(-1800px, -124px);}
+
+.explodeCover(rewards, mini)    {.explodeSprite(-1552px, -248px);}
+.explodeCover(bio, mini)        {.explodeSprite(-1676px, -248px);}
+.explodeCover(playlists, mini)  {.explodeSprite(-1800px, -248px);}
+
+// Base font family
+// font-family: "HelveticaNeueLT", 'Source Sans Pro', Helvetica, Arial, "Lucida Grande", sans-serif; 
+
+.tahoma(){
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+.SourceSansPro(){
+  font-family: 'Source Sans Pro', HelveticaNeueLT, Helvetica, Arial, sans-serif;
+}
+
+.Light() {
+    background:;
+    color:@ltGray;
+}
+
+.Dark() {
+    background:@black;
+    color:#FFFFFF;
+}
+.Digit() {
+    color:@dkYellow;
+    .font-size(26);
+    font-weight:bold;
+}
+
+ 
+.dottedLine(@color: @remoteGray, @width:228px){
+	content:"";
+	.Sprite();
+	background-position: -3px -2px;
+	position: absolute;
+	height: 1px;
+	overflow: hidden;
+	width:@width;
+	color: @color;
+	font-weight: normal;
+	float:left;
+}
+
+.button(@bgColor: @red, @textColor: @white){
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: @bgColor;
+	color: @textColor;
+}
+
+.notButton(){
+  background-color:transparent;
+  border:0; outline:0;
+  outline-style:none;
+  outline-width:0;
+  padding:0; margin:0;
+  line-height:1.24;
+  font-stretch:normal;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:normal;
+  border-radius:0;
+}
+
+.redBtn(){
+	.border-radius(2px);
+	.gradient(#cd1e24, #ac1a1e);
+	color: @white;
+}
+
+.grayBtn(){
+	.border-radius(2px);
+	.gradient(#7b7b7b, #484848);
+	color: @white;
+}
+
+.text-shadow(@x: 1px, @y: 1px, @spread:0, @color:@white){
+	text-shadow: @x @y @spread @color;
+}
+
+/**
+ * The box-sizing property allows you to define certain elements to fit an area 
+ * in a certain way.
+ * @mixin
+ * @example
+ * <code>
+ *     .box-sizing();
+ * </code>
+ * @param {String} [props] Optional value. Default: border-box
+ */
+.box-sizing(@props: border-box) {
+    -moz-box-sizing: @props;
+    -webkit-box-sizing: @props;
+    box-sizing: @props; // Opera, IE 8+
+}
+
+.Sprite() {
+    @url: %("%s/sprite.png", @imagePath);
+    background-image: url(@url);
+    .box-sizing();
+    background-repeat: no-repeat;
+}
+
+.SpriteSheet() {
+    @url: %("%s/spriteSheet.png", @imagePath);
+    background-image: url(@url);
+    .box-sizing();
+    background-repeat: no-repeat;
+}
+
+.helvetica(){
+	font-family: "HelveticaNeueLT", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.alphaBackground(@alpha:1, @background:none) {
+  background: @background;
+  opacity: @alpha;
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1;
+}
+/**
+ * For clearing floats.
+ */
+.clearfix() {
+    *zoom: 1;
+    &:before, &:after {
+        display: table;
+        content: "";
+        // Fixes Opera/contenteditable bug:
+        // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+        line-height: 0;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.ellipsis() {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis; /* required for Opera */
+    text-overflow: ellipsis;
+    //-moz-binding: url('ellipsis.xml#ellipsis'); /* for Firefox; details here http://mattsnider.com/css-string-truncation-with-ellipsis/ */
+    //display: block;
+    //position: absolute;
+}
+
+/**
+ * Center a block-level element.
+ */
+.centerBlock() {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/**
+ * Sets a border-radius for each of the 4 corners individually. The values go in 
+ * a clockwise rotation: top right, bottom right, bottom left, top left.
+ * @mixin
+ * @example
+ * <code>
+ *     .border-radius(8px, 0, 8px, 0);
+ * </code>
+ * @param {Unit} [topright] Optional. Default: 0
+ * @param {Unit} [bottomright] Optional. Default: 0
+ * @param {Unit} [bottomleft] Optional. Default: 0
+ * @param {Unit} [topleft] Optional. Default: 0
+ */
+.borderRadius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+    -webkit-border-top-right-radius: @topright;
+    -webkit-border-bottom-right-radius: @bottomright;
+    -webkit-border-bottom-left-radius: @bottomleft;
+    -webkit-border-top-left-radius: @topleft;
+    -moz-border-radius-topright: @topright;
+    -moz-border-radius-bottomright: @bottomright;
+    -moz-border-radius-bottomleft: @bottomleft;
+    -moz-border-radius-topleft: @topleft;
+    border-top-right-radius: @topright;
+    border-bottom-right-radius: @bottomright;
+    border-bottom-left-radius: @bottomleft;
+    border-top-left-radius: @topleft;
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+}
+
+.border-radius(@arguments){
+	border-radius: @arguments;
+}
+
+/**
+ * Adds a box-shadow that is a semi-transparent black. The first two values control 
+ * the x and y axis position, the third controls blur (how big the shadow is), 
+ * and the final value is the opacity (0 is fully transparent, 1 is opaque).
+ * @mixin
+ * @example
+ * <code>
+ *     .drop-shadow(0, 1px, 2px, 0.2);
+ * </code>
+ * @param {Unit} [x-offset] Optional horizontal offset. Default: 2px
+ * @param {Unit} [y-offset] Optional vertical offset. Default: 2px
+ * @param {Unit} [blur-distance] Optional blur.
+ * @param {Unit} [spread-distance] Optional spread.
+ * @param {Color} [color] Optional color. Default: #888 (gray)
+ * @param {String} [type] Optional 'inset' value. Default creates an outer shadow.
+ */
+.boxShadow(@arguments: 2px 2px #888) {
+    -webkit-box-shadow: @arguments;
+    //-moz-box-shadow: @arguments; // only needed if supporting FF <4.0
+    box-shadow: @arguments;
+}
+
+/**
+ * Divides the content into columns. The variables are: column width, column count, 
+ * column gap, column border color, column border style, column border width.
+ * @mixin
+ * @example
+ * <code>
+ * </code>
+ * 
+ */
+.columns(@colwidth: 250px, @colcount: 0, @colgap: 50px, @columnRuleColor: #EEE, @columnRuleStyle: solid, @columnRuleWidth: 1px) {
+    -moz-column-width: @colwidth;
+    -moz-column-count: @colcount;
+    -moz-column-gap: @colgap;
+    -moz-column-rule-color: @columnRuleColor;
+    -moz-column-rule-style: @columnRuleStyle;
+    -moz-column-rule-width: @columnRuleWidth;
+    -webkit-column-width: @colwidth;
+    -webkit-column-count: @colcount;
+    -webkit-column-gap: @colgap;
+    -webkit-column-rule-color: @columnRuleColor;
+    -webkit-column-rule-style: @columnRuleStyle;
+    -webkit-column-rule-width: @columnRuleWidth;
+    column-width: @colwidth;
+    column-count: @colcount;
+    column-gap: @colgap;
+    column-rule-color: @columnRuleColor;
+    column-rule-style: @columnRuleStyle;
+    column-rule-width: @columnRuleWidth;
+}
+
+// TODO: Make this an alias for box-shadow
+/**
+ * Adds a drop shadow to an element.
+ * @mixin
+ * 
+ */
+.dropShadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+    -webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+    box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}
+
+/**
+ * Creates a gradient background.
+ * @mixin
+ * @example
+ *     <code>
+ *     .gradient(#EEE, #FFF, 0%, 10%);
+ *     </code>
+ * @param {Hex Color} color
+ * @param {Hex Color} start
+ * @param {Hex Color} stop
+ * @param {percentage} start
+ * @param {percentage} stop
+ */
+
+.gradient(@startColor:#EEE, @stopColor:#FFF, @startLoc:0%, @stopLoc:100%){
+	background: @startColor; /* Old browsers */
+	background: -moz-linear-gradient(top, @startColor @startLoc, @stopColor @stopLoc); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(@startLoc,@startColor), color-stop(@stopLoc,@stopColor)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, @startColor @startLoc,@stopColor @stopLoc); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, @startColor @startLoc,@stopColor @stopLoc); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, @startColor @startLoc,@stopColor @stopLoc); /* IE10+ */
+	background: linear-gradient(to bottom, @startColor @startLoc,@stopColor @stopLoc); /* W3C */
+}
+/*
+.linear-gradient(@pos: top, @clr1: @framework-color0, @distance1: 0%, @clr2: @framework-color1, @distance2: 100%) {
+    background: @clr1;
+    background: -webkit-linear-gradient(@pos, @clr1 @distance1, @clr2 @distance2);
+    background: -moz-linear-gradient(@pos, @clr1 @distance1, @clr2 @distance2);
+    background: -ms-linear-gradient(@pos, @clr1 @distance1, @clr2 @distance2);
+    background: linear-gradient(@pos, @clr1 @distance1, @clr2 @distance2);
+}
+ */
+ 
+//Creates mock-shadow with gradient  
+ 
+.gradientShadow(@startColor:rgba(0,0,0,0.15) , @stopColor: rgba(0,0,0,0), @height: 25px){
+	content: "";
+	width: 100%;
+	position: absolute;
+	height: @height;
+	.gradient(@startColor, @stopColor);
+}
+
+// TODO: make this an alias for box-shadow
+/**
+ * Sets the inner shadow. The first two numbers are the x and y coordinates, 
+ * the third is the blur and the last one is the strength of the shadow.
+ * @mixin
+ * @example
+ * <code>
+ * </code>
+ * @param {Unit} [horizontal] Optional x-offset. Default: 0
+ * @param {Unit} [vertical] Optional y-offset. Default: 1px
+ * @param {Unit} [blur] Optional blur. Default: 2px
+ * @param {Decimal} [alpha] Optional strength. Default: 0.4
+ */
+.innerShadow(@horizontal: 0, @vertical: 1px, @blur: 2px, @alpha: 0.4) {
+    -webkit-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+    box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+}
+
+/**
+ * Sets the opacity. 0 is fully transparent, 100 is opaque.
+ * @mixin
+ * @param {Number} [opacity] The opacity between 0 and 100. Default: 50
+ */
+.opacity(@opacity: 50) {
+    opacity: @opacity / 100;
+    filter: ~"alpha(opacity=@{opacity})"; // IE <9
+}
+
+/**
+ * Sets a border-radius for all 4 corners. If you want to set border-radius for 
+ * individual corners use: .border-radius()
+ * @mixin
+ * @see border-radius
+ * @example
+ * <code>
+ *     .rounded(8px);
+ * </code>
+ * @param {Unit} [radius] Optional radius for each corner. Default: 4px
+ */
+.rounded(@radius: 4px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+/**
+ * Scales the item by the ratio provided.
+ * @mixin
+ * @example
+ * This will make the item 2 times larger.
+ * <code>
+ *     .scale(2);
+ * </code>
+ * @param {Decimal} [ration] Optional ratio. Default: 1.5
+ */
+.scale(@ratio: 1.5){
+    .transform(scale(@ratio));
+    /*
+    -webkit-transform: scale(@ratio);
+    -moz-transform: scale(@ratio);
+    transform: scale(@ratio);
+     */
+}
+
+/**
+ * Sets the transition duration and effect to use for any transitions 
+ * (e.g. hover effects), unlike transition-duration which only sets the duration.
+ * @mixin
+ * @example
+ * <code>
+ * </code>
+ * @param {Unit} [duration] Optional duration. Default: 0.2s
+ * @param {String} [ease] Optional effect. Default: ease-out
+ */
+.transition(@duration: 0.2s, @ease: ease-out, @delay: 0s) {
+    -webkit-transition: all @duration @ease @delay;
+    -moz-transition: all @duration @ease @delay; // FF 4-15
+    -ms-transition: all @duration @ease @delay;
+    -o-transition: all @duration @ease @delay; // Opera 10.5-12.00
+    transition: all @duration @ease @delay; // FF 16+, Operal 12.50+
+}
+
+/**
+ * Sets a transition-duration (time it takes to do things like hover effects). 
+ * The value provides a time in seconds.
+ * @mixin
+ * @example
+ * <code>
+ *     .transition-duration(0.1s);
+ * </code>
+ * @param {Unit} [duration] Optional time in seconds. Default: 0.2s
+ */
+.transitionDuration(@duration: 0.2s) {
+    -moz-transition-duration: @duration;
+    -webkit-transition-duration: @duration;
+    transition-duration: @duration;
+}
+
+/**
+ * Translates an element using the given coordinates. The values are x and y offset 
+ * coordinates, so the above example moves the element right 10 pixels and up 20 pixels.
+ * @mixin
+ * @example
+ * <code>
+ *     .translate(10px, 20px);
+ * </code>
+ * @param {Unit} [x] Optional x offset. Default: 0
+ * @param {Unit} [y] Optional y offset. Default: 0
+ */
+.translate(@x: 0, @y: 0) {
+    .tansform(translate(@x, @y));
+    /*
+    -moz-transform: translate(@x, @y);
+    -webkit-transform: translate(@x, @y);
+    -o-transform: translate(@x, @y);
+    -ms-transform: translate(@x, @y);
+    transform: translate(@x, @y);
+     */
+}
+
+/**
+ * The transform property applies a 2D or 3D transformation to an element. This 
+ * property allows you to rotate, scale, move, skew, etc., elements.
+ * @mixin
+ */
+.transform(@props: rotate(90deg)) {
+    -webkit-transform: @props; // Safari and Chrome
+    -moz-transform: @props; // Firefox
+    -ms-transform: @props; // IE 9+
+    -o-transform: @props; // Opera 10.5-12.00
+    transform: @props; // FF 16+, Opera 12.50+
+}
+
+/**
+ * The grayscale filter is an SVG image filter in CSS3, the level adjusts the amount of grayscale to
+ * be used.  For full black & white, use the default 100%.
+
+**/
+
+.grayscale(@level: 100%){
+	filter: grayscale(@level);
+	-webkit-filter: grayscale(@level);
+	-moz-filter: grayscale(@level);
+	-o-filter: grayscale(@level);
+	-ms-filter: grayscale(@level);
+}
+
+.animation(@arguments){
+	-webkit-animation: @arguments;
+	-moz-animation: @arguments;
+	animation: @arguments;
+}
+
+.placeholder(@color: @placeholderText) {
+  :-moz-placeholder {
+    color: @color;
+  }
+  ::-webkit-input-placeholder {
+    color: @color;
+  }
+}

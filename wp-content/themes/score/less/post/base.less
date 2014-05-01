@@ -1,0 +1,245 @@
+/**
+ * Post Base Styles
+ *
+ * Base styles for the "Post" post-type. The styles in this file are common to 
+ * all devices.
+ *
+ */
+
+@import "../base";
+
+
+section[id^='/post/archive/'], section[id^='/news/'] {
+        /**
+         * -----------------
+         * @subsection Archive
+         * -----------------
+         */
+            .explorer {
+
+            }
+
+            article {
+                margin-bottom: 2em;
+                .thumbnail {
+                    a {
+                        display: block;
+                    }
+                }
+                .content {
+                    position: relative;
+                }
+                .title, .title a {
+                    .font-size(18);
+                    color: @red;
+                    font-weight: 200;
+                }
+                .title {
+                    margin: 0;
+                }
+                .subtitle {
+                  margin: 0;
+                  .font-size(15);
+                  font-weight: 300;
+                  color: #323232;
+                  height:18px;
+                  overflow:hidden;
+                  &:empty{
+	                  display: none;
+                  }
+                }
+                .excerpt {
+                    overflow: hidden;
+                }
+                .metabar {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    max-width:430px;
+                    min-width:272px;
+                    padding: 5px 0 0 5px;
+                    background: #dfdfdf;
+                    height: 25px;
+                    .font-size(11);
+                    .tahoma();
+                    .box-sizing();
+                    a {
+                      color: #6b6b6b;
+                      text-transform: uppercase;
+                      font-weight: bold;
+                      span{
+                        color: @red;
+                      }
+                    }
+                    ul {
+                        margin-top: 1px;
+                        li {
+                            padding: 0 8px 0 0;
+                            float: left;
+                            display: block;
+                            button{ .notButton(); }
+                            a, button{
+                            	display: block;
+	                            float: left;
+                              color:#6b6b6b;
+                              &.dig, &.undig{
+                                .tahoma();
+                                .font-size(11);
+                                font-weight:bold;
+                                text-transform:uppercase;
+                                &:before{
+                                  content: attr(data-dig-count) " ";
+                                  color: @red;
+                                }
+                                &.isOwner{
+                                  visibility:hidden;
+                                  cursor:auto;
+                                  &:before{
+                                    content:attr(data-dig-count) " Digs";
+                                    display:block;
+                                    visibility:visible;
+                                  }
+                                }
+                              }
+                            }
+                            &:before{
+	                            content: "-";
+	                            display: block;
+	                            float: left;
+	                            color: #6b6b6b;
+	                            margin-right: 8px;
+	                            line-height: 14px;
+                            }
+                            &:first-child{
+                            	margin-left: 8px;
+	                            &:before{
+		                            content: "";
+		                            margin: 0;
+	                            }
+                            }
+                            span{
+	                            color: @red;
+                            }
+                        }
+                    }
+                }
+            }
+
+          div.showMore {
+                width: 630px;
+                margin: 0;
+                background: none;
+                border: none;
+                visibility:hidden;
+                &:hover{
+                  background: none;
+                }
+                a {
+                	display: block;
+                  width:189px;
+                  margin: 0 auto;
+							    background: @white;
+							    border: 1px solid #e9e9e9;
+							    color:@red;
+							    text-align:center;
+							    clear:both;
+							    font-weight:200;
+							    cursor:pointer;
+							    .font-size(16);
+							    padding: 11px 0 5px;
+							    .border-radius(3px);
+							    &:hover{
+								    background: @red;
+								    color: @white;
+							    }
+							  }
+          }
+}
+        /**
+         * -----------------
+         * @subsection Single (Detail)
+         * -----------------
+         */
+section[id^='/article/'], section[id^='/post/single/'] {
+            .rail {
+                position: relative;
+            }
+            .context {
+              .date {
+                float: left;
+                .font-size(12);
+                color: @ltGray;
+                margin: 5px 0 0 2px;
+                width: 20%;
+              }
+              .digArticle{
+                float: right;
+                .font-size(14);
+                margin: 5px 2px 0 0;
+                button{
+                  color: @red;
+                  &.dig, &.undig{
+                    .notButton();
+                    &:before{
+                      content: attr(data-dig-count) " Digs - ";
+                      color: @red;
+                      font-weight: bold;
+                    }
+                    &.isOwner{
+                      visibility:hidden;
+                      cursor:auto;
+                      &:before{
+                        content:attr(data-dig-count) " Digs";
+                        display:block;
+                        visibility:visible;
+                      }
+                    }
+                  }
+                }
+              }
+              h1.title {
+                margin: 1em 0 0 0;
+                .font-size(27);
+                font-weight: 200;
+                color: @red;
+              }
+              .subtitle {
+                margin: 0;
+                .font-size(19);
+                color: #323232;
+                font-weight: 200;
+                
+              }
+              .content {
+              	
+              	p{
+	              	.tahoma();
+	              	.font-size(13);
+	              	color: #6b6b6b;
+              	}
+              	.section-header{
+	              	color: #323232;
+	              	.font-size(18);
+	              	font-weight: 200;
+              	}
+              }
+              .tags {
+              	.tahoma();
+              	.font-size(13);
+              	border-top: 1px solid #a2a2a2;
+              	padding-top: 15px;
+              	margin-top: 10px;
+                  span.label {
+                    padding: 3px 7px;
+                    background: @red;
+                    color: @white;
+                    margin-right: 8px;
+                  }
+                  span{
+                    a{
+	                    color: @red;
+                    }
+                  }
+                }
+            }
+}

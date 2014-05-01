@@ -1,0 +1,23 @@
+div#poststuff.post-types-wrap {
+}
+
+div.postbox {
+	width:420px
+}
+
+div.column-1,div.column-2 {
+	width:440px;float:left
+}
+
+#titlewrap {
+	height:34px;padding-right:10px
+}
+
+#titlewrap input#title {
+	float:left;width:48%
+}
+
+#titlewrap input#submitbutton {
+	float:left;margin-top:5px
+}
+

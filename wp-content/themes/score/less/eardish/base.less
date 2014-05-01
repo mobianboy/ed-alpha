@@ -1,0 +1,550 @@
+/**
+ * Eardish Global Base Styles
+ *
+ * The styles in this file are common to all devices.
+ *
+ */
+
+@import "../base";
+@import "../lib/normalize";
+
+/**
+ * ---------------------
+ * @section Base Defaults
+ * ---------------------
+ */
+html,
+button,
+input,
+select,
+textarea {
+    //.fontface();
+    color: #222;
+}
+var{ display:none; }
+
+body {
+    //margin: 0 auto; // center fixed position
+    
+   font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    color: @textColor;
+    font-family: "HelveticaNeueLT", 'Source Sans Pro', Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-style:normal;
+    font-weight:normal;
+    font-variant:normal;
+    font-stretch:normal;
+    background: #f6f6f6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+}
+
+img.showMore.hidden{
+  display:block;
+  visibility:visible;
+  opacity:0;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection declarations have to be separate.
+ * Customize the background color to match your design.
+ */
+/*::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+*/
+a {
+    //color: @linkColor;
+    text-decoration: none;
+}
+
+/*
+ * A better looking default horizontal rule.
+ */
+hr {
+    display: block;
+    height: 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #fff;
+    border-left: none;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+img {
+    //width: 100%;
+    vertical-align: middle;
+}
+
+ul {
+    &.horizontal, &.plain {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+    &.horizontal {
+        display: inline-block;
+        li {
+            float: left;
+        }
+    }
+    &.plain {
+
+    }
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+    resize: vertical;
+}
+
+button
+/* , .btn  */{
+    font-size: @btnFontSize;
+    color: @btnFontColor;
+    background-color: @btnBgColor;
+    cursor: pointer;
+    &:hover {
+        background-color: @btnBgHighlight;
+        color: @btnFontColorHighlight;
+    }
+    &.disabled {
+        .opacity(60);
+        cursor: default;
+    }
+}
+
+
+/**
+ * ---------------------
+ * @section Layout
+ * ---------------------
+ */
+#wrapper {
+    position: relative;
+}
+
+/*
+header {
+    width: 100%;
+    //height: 50px;
+    background: @black;
+    border-bottom: 1px solid @ltGray;
+}
+*/
+
+footer {
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid @dkGray;
+    text-align: center;
+}
+
+/**
+ * ---------------------
+ * @section Utility Classes
+ * ---------------------
+ */
+/*
+.left {
+    float: left !important;
+}
+
+.center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.right {
+    float: right !important;
+}
+
+.clear {
+    clear: both !important;
+}
+*/
+/*
+ * Hide from both screenreaders and browsers.
+ */
+.hidden, .hide {
+    display: none;// !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders.
+ */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard.
+ */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout.
+ */
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before, .clearfix:after, .cf:before, .cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after, .cf:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix, .cf {
+    *zoom: 1;
+}
+
+ul.selectBox{
+  width:100px;
+  height:24px;
+  background:@dkGray;
+  overflow:hidden;
+  .transition(0.5s, ease);
+  position:relative;
+  z-index:3;
+  float:left;
+  li{
+    background:@dkGray;
+    width:100px;
+    height:24px;
+    border-bottom: thin solid @white;
+    color:@white;
+    z-index:3;
+    font-size:.7rem;
+    text-transform: capitalize;
+    &:hover{
+      color:@red;
+      cursor:pointer;
+    }
+    /*&.selected{
+      position:absolute;
+      top:0;
+      left:0;
+      z-index:4;
+      height:26px;
+    }*/
+    span{
+      display:block;
+      &.text{
+        margin-top:5px;
+        margin-left:8px;
+      }
+    }
+  }
+  &.open{
+    height:240px;
+  }
+}
+
+div.login_box{
+  position:relative;
+  div.dos{
+    display:none;
+    position:absolute;
+    background:#DDDDDD;
+    height:100%;
+    width:100%;
+    div.context{
+      margin-top:6px;
+      font-size:0.8rem;
+      font-weight:bold;
+      color:#990000;
+      position:relative;
+      left:155px;
+    }
+    &.open{
+      display:none;
+    }
+  }
+}
+
+
+// Splash Page
+section.splashPage{
+	width: 100%;
+	max-width:100% !important; /*DONT DO THIS: FIX ME!*/
+    height: 100%;
+	position: fixed;
+	top: 0; left: 0;
+  background: url("http://@{cdn}/images/bgSplash.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	&.hover{
+		background: url("http://@{cdn}/images/bgSplash-hover.jpg") no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+	div.panel{
+		width: 100%;
+		background: rgba(255,255,255,0.9);
+		position: absolute;
+		&.top{
+			top:0; left:0;	
+			height: 41%;
+			border-bottom: 3px solid #666666;
+			
+			&:after{
+				content: "";
+				width: 100%;
+				.gradientShadow(rgba(0,0,0,0.4), rgba(0,0,0,0), 17px);
+				bottom: -20px; left:0;
+			}
+			h1.logo{
+				text-indent: -9999px;
+				width: 300px;
+				height: 128px;
+				display: block;
+				.bgImg("%s/logoSplashBeta.png");
+				margin: 0 auto;
+				position: absolute;
+				bottom:-21px;
+				left: 0px;
+				right:0px;
+				z-index: 2;
+			}			
+		}
+		&.bottom{
+			bottom:0; left:0;
+			height: 32%;
+			border-top: 3px solid #666666;	
+			&:after{
+				content: "";
+				width: 100%;
+				.gradientShadow(rgba(0,0,0,0), rgba(0,0,0,0.4), 17px);
+				top: -20px; left:0;	
+			}
+			div.request{
+				position: absolute;
+				top: -78px; left: 50%;
+				width: 400px;
+				height: 75px;
+				margin-left: -184px;
+				overflow: hidden;
+				&.ty{
+          top:-108px;
+          height:105px;
+        }
+        div.container{
+					width:100%;height: 100%;
+					position: absolute;
+					bottom: -45px; left:0;
+					.bgImg("%s/iconRequest.png", left, bottom);
+					div.bubble{
+						background: @white;
+						border-radius: 6px;
+						padding: 6px 15px;
+						font-size: .9rem;
+						text-align: center;
+						font-weight: bold;
+						position: absolute;
+						left: 26px; top: 0;
+						border: 1px solid rgba(230,230,230, 0.7);
+						.boxShadow(0 0 6px @black);
+						opacity: 0;
+						&:after{
+							content: "";
+							position: absolute;
+							bottom: -8px; left: 10px;
+							width: 0; height: 0;
+							border-top: 0px solid transparent;
+							border-bottom: 10px solid transparent;
+							border-left: 7px solid @white; 
+						}
+					}
+				}	
+			}
+			section.signup{
+				width: 400px;
+				height: 30px;
+				position: absolute;
+				top: 0; left: 50%;
+				margin-left: -200px;
+				font-size: .875rem;
+				overflow: hidden;
+				div.form{
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: -32px; left:0;
+					background: #666;
+					.border-radius(0 0 5px 5px);
+					input[type=text]{
+						width: 60%;
+						float: left;
+						border: none;
+						height: 20px;
+						line-height: 20px;
+						margin-right: 10px;
+						padding: 0 0 0 5px;
+						margin: 3px 3px 3px 6px;
+					}
+					div.button{
+						background: @red;
+						color: @white;
+						width: 33%;
+						height: 20px;
+						line-height: 20px;
+						float: left;
+						cursor:pointer;
+						text-transform: uppercase;
+						text-align: center;
+						margin: 3px 0 3px 3px;
+						font-weight: 600;
+					  &:hover{
+              background:#990000;
+            }
+          }
+
+				}
+			  h2{
+          margin:0;
+          text-align:center;
+          font-size:1.4rem;
+          span.evolution{
+            color:@red;
+          }
+        }
+			}
+		}
+	}
+	div.sign{
+		width: 19%;
+		height: 17.9%;
+		position: absolute;
+		top: 46.4%;
+		left:55%;
+		cursor: pointer;
+	}
+  div.preload{display:none;}
+}
+
+
+
+
+
+div.top.panel{
+	.animation(top-panel 1s 8s 1 forwards);
+}
+
+div.bottom.panel{
+	.animation(bottom-panel 1s 8s 1 forwards);
+}
+
+div.request .container{
+	.animation(request-icon .5s 9s 1 forwards);
+}
+
+div.request .bubble {
+	.animation(speech-bubble .5s 10s 1 forwards);
+}
+
+section.signup .form{
+	.animation(signup-box .5s 9s 1 forwards);
+}
+
+
+section.splashPage.open{
+	div.top.panel{
+		.animation(top-panel 1.5s 1 forwards);
+	}
+	
+	div.bottom.panel{
+		.animation(bottom-panel 1.5s 1 forwards);
+	}
+	
+	div.request .container{
+		.animation(request-icon .5s 2s 1 forwards);
+	}
+	
+	div.request .bubble {
+		.animation(speech-bubble .5s 3s 1 forwards);
+	}
+	
+	section.signup .form{
+		.animation(signup-box .5s 2s 1 forwards);
+	}
+}
+
+
+
+@-webkit-keyframes top-panel{from {height: 41%;} to {height: 33.5%;}}
+@keyframes top-panel{from {height: 41%;} to {height: 33.5%;}}
+
+@-webkit-keyframes bottom-panel{ from {height: 32%;} to {height: 22.4%;}}
+@keyframes bottom-panel{ from {height: 32%;} to {height: 22.4%;}}
+
+@-webkit-keyframes signup-box { from {top:-32px;} to {top:0;}}
+@keyframes signup-box { from {top:-32px;} to {top:0;}}
+
+@-webkit-keyframes request-icon{ from {bottom:-45px;} to {bottom:0;}}
+@keyframes request-icon{ from {bottom:-45px;} to {bottom:0;}}
+
+@-webkit-keyframes speech-bubble{ from {opacity:0;} to {opacity:1;}}
+@keyframes speech-bubble{ from {opacity:0;} to {opacity:1;}}
+

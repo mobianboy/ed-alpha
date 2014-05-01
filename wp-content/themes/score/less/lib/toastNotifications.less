@@ -1,0 +1,143 @@
+// Animations
+// Fade in
+.enterFrames(){
+	0%{
+		opacity:0;
+		height:0;
+		padding:0;
+    line-height:0;
+    //overflow:hidden;
+	}
+	40%{
+		opacity:0;
+		height:auto;
+		padding:15px;
+    line-height:normal;
+    //overflow:hidden;
+	}
+	100%{
+		opacity:1;
+		height:auto;
+		padding:15px;
+    line-height:normal;
+    //overflow:auto;
+	}
+}
+@keyframes toastEnter { .enterFrames(); }
+@-webkit-keyframes toastEnter { .enterFrames(); }
+
+// Fade out
+.exitFrames(){
+	0%{
+		opacity:1;
+		height:auto;
+		padding:15px;
+    line-height:normal;
+    //overflow:auto;
+	}
+	60%{
+		opacity:0;
+		height:auto;
+		padding:15px;
+    line-height:normal;
+    //overflow:auto;
+	}
+	100%{
+		opacity:0;
+		height:0;
+		padding:0;
+    line-height:0;
+    //overflow:hidden;
+	}
+}
+@keyframes toastExit { .exitFrames(); }
+@-webkit-keyframes toastExit { .exitFrames(); }
+// END Animations
+
+// Mixins
+.animation-fill-mode(@arguments){
+  animation-fill-mode:@arguments;
+  -webkit-animation-fill-mode:@arguments;
+  -moz-animation-fill-mode:@arguments;
+  -o-animation-fill-mode:@arguments;
+}
+// END Mixins
+
+// Styles
+.toastNotificationCenter{
+	&:empty{ opacity:0; line-height:0; }
+	display:block;
+	position:fixed;
+	top:70px;  bottom:auto;
+  left:auto; right:50px;
+	width:500px;
+  padding:0; margin:0;
+	background-color:@toastBackground;
+	border:1px solid @toastBorder;
+	border-radius:4px;
+	box-shadow:2px 2px 5px 0px @toastBackground;
+  overflow:hidden;
+	opacity:1;
+	z-index:10;
+	.transition(all 2800ms linear 0);
+	.toast{
+		display:block;
+		padding:15px;
+		height:auto;
+		background-color: @toastBackground;
+		color: @white;
+    border-bottom:1px solid @toastBorder;
+		position:relative;
+    overflow:hidden;
+		opacity:1;
+    .transition(all 2800ms linear 0);
+		.animation-fill-mode(forwards);
+    &:last-child{ border-bottom:0 none; }
+    &:before{
+      //content:"";
+      display:inline-block;
+      width:29px; height:28px;
+      position:absolute;
+      .Sprite();
+      background-position:-575px -261px;
+    }
+    &.info{
+      &:before{ content:""; background-position:-575px -261px; }
+    }
+    &.error{
+      &:before{ content:""; background-position:-605px -261px; }
+    }
+    &.success{
+      &:before{ content:""; background-position:-634px -261px; }
+    }
+    div.msg{
+      display:inline-block;
+      margin:7px 0 0 43px;
+    }
+    a{
+      cursor:pointer;
+      text-decoration:none;
+      color:@red;
+      &:hover, &:focus, &:active{ text-decoration:underline; }
+    }
+		&:not(.close) > span.close{ display:none; }
+		&>span.close{
+			display:block;
+			width:16px;
+			height:16px;
+      .Sprite();
+      background-position:-608px -292px;
+			position:absolute;
+			top:5px;
+			right:5px;
+      cursor:pointer;
+      &:hover, &:active, &:focus{
+        background-position:-608px -310px;
+      }
+		}
+    // Animation classes
+		&.pop{   .animation(~"enter 2.5s ease-out 0s 1 normal, exit 2.5s ease-in 5.5s 1 normal");	}
+		&.enter{ .animation(enter 2.5s ease-out 0s 1 normal); }
+		&.exit{  .animation(exit 2.5s ease-out 0s 1 normal);  }
+	}
+}

@@ -1,0 +1,5 @@
+section[data-post-type='song']{position:relative;}section[data-post-type='song'][data-template='single'] section{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}section[data-post-type='song'][data-template='single'] section.header{width:780px;height:150px;border:thin solid #000000;}section[data-post-type='song'][data-template='single'] section.header div{float:left;height:150px;}section[data-post-type='song'][data-template='single'] section.header div.cover_art{width:150px;background:#AAAAAA;}
+section[data-post-type='song'][data-template='single'] section.header div.meta_data{width:618px;margin-left:10px;}
+section[data-post-type='song'][data-template='single'] section.feedback,section[data-post-type='song'][data-template='single'] section.related{width:780px;min-height:150px;border:thin solid black;margin-top:10px;}
+section[data-post-type='song'][data-template='single'] section.feedback div.comment_form{width:100%;}
+section[data-post-type='song'][data-template='archive'] section.filters{width:100%;height:26px;background:#000000;color:#FFFFFF;}
