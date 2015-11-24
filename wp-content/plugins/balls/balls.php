@@ -4,7 +4,7 @@ Plugin Name: BALLS
 Plugin URI: 
 Description: Base Asynchronous Link Logic System
 Version: 2.0
-Author: Steven Kornblum, Eric Hodonsky, Devin Berry
+Author: Steven Kornblum
 */
 
 

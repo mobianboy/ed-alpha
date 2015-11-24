@@ -3,7 +3,7 @@
 
 /**
  * @desc Location class to handle zips, lat+lon and distance calculations with radius
- * @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+ * @author SDK (steve@eardish.com)
  * @date 2013-06-17
  */
 class location {
@@ -105,7 +105,7 @@ class location {
 
   /**
    * $desc Calculate bounding box with radius based distances for lat and lon
-   * @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+   * @author SDK (steve@eardish.com)
    * @date 2013-06-17
    * @param float $lat - The latitude coordinate 
    * @param float $lon - The longitude coordinate 
@@ -143,7 +143,7 @@ class location {
 
   /**
    * @desc Convert zip code into latitude/longitude coords
-   * @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+   * @author SDK (steve@eardish.com)
    * @date 2013-06-17
    * @param int $zip - The zipcode to query
    * @return arr - The lat/lon coords
@@ -219,7 +219,7 @@ class location {
 
   /**
    * @desc Get list of zips within radius of source zip
-   * @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+   * @author SDK (steve@eardish.com)
    * @date 2013-07-15
    * @param int $zip - The zipcode to query
    * @return arr - The lat/lon coords

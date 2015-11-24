@@ -1450,13 +1450,6 @@ class reward {
       }
     }
 
-    /* Force Paul Leighton to the top! :-P
-    $paul = get_users(array(
-      'include' => 25,
-    ));
-    array_unshift($resfans, $paul[0]);
-  	$resfans = array_slice($resfans, 0, 5);
-*/
     $fans = $resfans;
   } // end function get_top_raters
 

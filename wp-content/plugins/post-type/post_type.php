@@ -4,7 +4,7 @@ Plugin Name: Post Type
 Plugin URI: 
 Description: Post Type Management System
 Version: 2.0
-Author: Steven Kornblum, Jon Retting
+Author: Steven Kornblum
 */
 
 

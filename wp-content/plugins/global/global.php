@@ -255,7 +255,7 @@ class ed {
 	
 	/**
 	* @desc Process email alert content and send to mail queue
-	* @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+	* @author Steven Kornblum (steve@eardish.com)
 	* @date 2013-07-15
 	* @param str $tpl - The email template to use
 	* @param int $id - The id of the recipient user
@@ -311,7 +311,7 @@ class ed {
 	
 	/**
 	* @desc Get video data from Youtube data API
-	* @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+	* @author Steven Kornblum (steve@eardish.com)
 	* @date 2013-09-10
 	* @param int $id - The youtube id of the video
 	* @return arr - Return parsed data array from youtube API

@@ -1239,7 +1239,7 @@ class user {
 	
 	/**
 	 * @desc Generate an invite token
-	 * @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+	 * @author SDK (steve@eardish.com)
 	 * @date 2013-07-31
 	 * @param int $id  - The id of the user
 	 * @return str - The generated invite token
@@ -1267,7 +1267,7 @@ class user {
 
 	/**
 	 * @desc Validate an invite token
-	 * @author Jordan LeDoux (jordan@eardish.com), SDK (steve@eardish.com)
+	 * @author SDK (steve@eardish.com)
 	 * @date 2013-07-31
 	 * @param str $token - The invite token
 	 * @return id - The user ID
