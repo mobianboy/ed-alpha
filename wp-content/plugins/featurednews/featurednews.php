@@ -5,7 +5,7 @@ Plugin Name: Featured News Tool
 Plugin URI: 
 Description: Eardish Featured Articles Admin Tool
 Version: 1.0
-Author: Jordan LeDoux, Steven Kornblum
+Author: Steven Kornblum
 */
 
 class featurednews {

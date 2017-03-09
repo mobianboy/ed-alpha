@@ -19,9 +19,9 @@ $current_profile_type = get_user_meta(get_current_user_id(), 'profile_type', TRU
     <? include_once('demoPlayer.php') // Demo Player ?>
     <div class="widgets">
     	<? include_once('shout.php') // Shout ?>
-      <? include_once('message.php') // Messages ?>
-			<? include_once('note.php') // Notes ?>
-      <? include_once('contribute.php') // Contribute ?>
+        <? include_once('message.php') // Messages ?>
+		<? include_once('note.php') // Notes ?>
+        <? include_once('contribute.php') // Contribute ?>
     </div>
     <div class="buttons">
       <div id="btn_shout" class="btn"></div>

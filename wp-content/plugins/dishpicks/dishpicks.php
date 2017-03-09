@@ -5,7 +5,7 @@ Plugin Name: Dish Picks
 Plugin URI: 
 Description: Eardish Featured Music Selections Admin Tool
 Version: 1.0
-Author: Jordan LeDoux, Steven Kornblum
+Author: Steven Kornblum
 */
 
 class dishpicks {
