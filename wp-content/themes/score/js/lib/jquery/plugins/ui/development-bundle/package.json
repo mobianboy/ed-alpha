@@ -24,11 +24,10 @@
       "url": "http://www.opensource.org/licenses/GPL-2.0"
     }
   ],
-  "dependencies": {},
   "devDependencies": {
-    "grunt": "0.3.9",
-    "grunt-css": "0.1.1",
-    "grunt-compare-size": "0.1.1",
+    "grunt": "^1.4.0",
+    "grunt-compare-size": "^0.4.2",
+    "grunt-css": "^0.5.4",
     "request": ">=2.68.0",
     "rimraf": "2.0.1"
   },
